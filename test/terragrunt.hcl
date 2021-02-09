@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:Metasiteorg/man-v2-terraform.git//resources?ref=v0.0.4"
+  source = "git::git@github.com:Metasiteorg/man-v2-terraform.git//resources?ref=v0.0.5"
 }
 
 include {
@@ -9,7 +9,6 @@ include {
   inputs = {
   prefix = "mancom"
   location = "West Europe"
-  acr_name = "default-acr"
   acradminuser = "manPocRegistry"
   public_ssh_key_path = "~/.ssh/id_rsa_aks.pub"
   maria_db_admin_name = "mandbadmin"
