@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:Metasiteorg/man-v2-terraform.git//resources?ref=v0.0.3"
+  source = "git::git@github.com:Metasiteorg/man-v2-terraform.git//resources?ref=v0.0.4"
 }
 
 include {
