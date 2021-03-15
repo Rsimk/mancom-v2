@@ -4,12 +4,12 @@ set -e
 
 # Defaults
 LOCATION='westeurope'
-SP_NAME='http://tf-deploy-testing'
-SP_PIPELINE_NAME='http://tf-pipeline-testing'
-TF_RG_NAME='tfstate-rg'
+SP_NAME='http://tf-deploy'
+SP_PIPELINE_NAME='http://tf-pipeline'
+TF_RG_NAME='tfstate'
 TF_STATE_KEY_NAME='backend.tfstate'
-TF_STORAGE_ACCT_NAME=tf$RANDOM$RANDOM"st1"
-TF_KEYVAULT_NAME=tf-$RANDOM$RANDOM"-kv"
+TF_STORAGE_ACCT_NAME='mantfstatestorage'
+TF_KEYVAULT_NAME='man-tf-kv'
 TF_STORAGE_ACCT_SKU='Standard_GRS'
 TF_STORAGE_CONTAINER_NAME="tfstate"
 
@@ -146,8 +146,8 @@ echo "Removing 'Storage Blob Data Contributor' role assignment for $(echo $ADMIN
 az role assignment delete --ids $(echo $TOBEREMOVED | jq -r .id )
 
 echo "Adding Application.ReadWrite.All permission on deploy SP"
-az ad app permission add --id $(echo $SP_OBJECT | jq -r .objectId) --api 00000002-0000-0000-c000-000000000000 --api-permissions 1cda74f2-2616-4834-b122-5cb1b07f8a59=Role
-az ad app permission admin-consent --id $(echo $SP_OBJECT | jq -r .objectId)
+az ad app permission add --id $(echo $SP_OBJECT | jq -r .appId) --api 00000002-0000-0000-c000-000000000000 --api-permissions 1cda74f2-2616-4834-b122-5cb1b07f8a59=Role
+az ad app permission admin-consent --id $(echo $SP_OBJECT | jq -r .appId)
 
 echo "You will need to create the following secrets in GitHub or Azure DevOps"
 echo

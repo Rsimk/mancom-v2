@@ -31,6 +31,10 @@ variable "mariadb_srv_name" {
   description = "Maria DB server name"
 }
 
-variable "test_prefix" {
-  description  = "Used while testing for global unique names"
+variable "kubernetes_version" {
+  description  = "Set kubernetes version"
+}
+
+variable "kubernetes_vm_size" {
+  description  = "Kubernetes pool vm size"
 }

@@ -22,7 +22,7 @@ resource "azurerm_marketplace_agreement" "thorntechologieslls" {
 }
 
 resource "azurerm_linux_virtual_machine" "ftp_gateway" {
-  name                = "${var.test_prefix}-ftp-gateway-vm"
+  name                = "ftp-gateway-vm-${var.env_prefix}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
   size                = "Standard_B1ms"
