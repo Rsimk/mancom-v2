@@ -1,5 +1,5 @@
 resource "azurerm_log_analytics_workspace" "mancom" {
-  name                = "${var.prefix}-law"
+  name                = "${var.prefix}-law-${var.env_prefix}"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "PerGB2018"

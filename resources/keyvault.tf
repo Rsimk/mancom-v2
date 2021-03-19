@@ -36,7 +36,27 @@ resource "azurerm_key_vault_access_policy" "petras-dicpinigaitis" {
 
   secret_permissions = [
     "Get",
+	"List",
+	"Set",
+	"Delete",
+  ]
+}
+
+resource "azurerm_key_vault_access_policy" "julius-paradnikas" {
+  key_vault_id = azurerm_key_vault.man-bl.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = "0de8cbf9-e1a2-4053-9f98-5b78049217d2"
+
+  key_permissions = [
+    "Get",
 	"List"
+  ]
+
+  secret_permissions = [
+    "Get",
+	"List",
+	"Set",
+	"Delete",
   ]
 }
 

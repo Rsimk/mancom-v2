@@ -1,9 +1,13 @@
 resource "azurerm_kubernetes_cluster" "man_aks" {
-  name                = "${var.prefix}-k8s"
+  name                = "${var.prefix}-k8s-${var.env_prefix}"
   location            = var.location
   dns_prefix          = var.prefix
   resource_group_name = azurerm_resource_group.rg.name
   kubernetes_version  = var.kubernetes_version
+  
+  tags = {
+    environment = var.env_prefix
+  }
 
   linux_profile {
     admin_username = "azureuser"
@@ -46,7 +50,7 @@ resource "azurerm_kubernetes_cluster" "man_aks" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "manv2_pool" {
-  name                  = "${var.prefix}pool"
+  name                  = "${var.prefix}pool${var.env_prefix}"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.man_aks.id
   orchestrator_version  = var.kubernetes_version
   vm_size               = var.kubernetes_vm_size

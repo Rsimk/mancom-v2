@@ -23,18 +23,18 @@ variable "public_ssh_key_path" {
   description = "The Path at which your Public SSH Key is located. Defaults to ~/.ssh/id_rsa.pub"
 }
 
-variable "maria_db_admin_name" {
-  description = "Maria DB admin login name"
-}
-
-variable "mariadb_srv_name" {
-  description = "Maria DB server name"
-}
-
 variable "kubernetes_version" {
   description  = "Set kubernetes version"
 }
 
 variable "kubernetes_vm_size" {
   description  = "Kubernetes pool vm size"
+}
+
+variable "sftpUser" {
+  description  = "sftp User"
+}
+
+variable "sftpPassword" {
+  description  = "sftp Password"
 }

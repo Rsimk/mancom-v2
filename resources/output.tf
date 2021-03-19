@@ -30,7 +30,3 @@ output "node_resource_group" {
   value = azurerm_kubernetes_cluster.man_aks.node_resource_group
 }
 
-output "mariadb_admin_passwd" {
-  value = azurerm_mariadb_server.man_mariadb.administrator_login_password
-}
-
