@@ -9,7 +9,7 @@ resource "random_string" "sp-aks-secret" {
 }
 
 resource "azuread_application" "sp-aks" {
-  display_name = "sp-aks-${var.prefix}-k8s"
+  display_name = "sp-aks-${var.prefix}-k8s-${var.env_prefix}"
 }
 
 resource "azuread_service_principal" "sp-aks" {

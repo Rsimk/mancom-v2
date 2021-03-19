@@ -1,9 +1,13 @@
 resource "azurerm_kubernetes_cluster" "man_aks" {
-  name                = "${var.prefix}-k8s"
+  name                = "${var.prefix}-k8s-${var.env_prefix}"
   location            = var.location
   dns_prefix          = var.prefix
   resource_group_name = azurerm_resource_group.rg.name
-  kubernetes_version  = "1.18.10"
+  kubernetes_version  = var.kubernetes_version
+  
+  tags = {
+    environment = var.env_prefix
+  }
 
   linux_profile {
     admin_username = "azureuser"
@@ -15,8 +19,8 @@ resource "azurerm_kubernetes_cluster" "man_aks" {
 
   default_node_pool {
     name                 = "default"
-    orchestrator_version = "1.18.10"
-    vm_size              = "Standard_E2s_v3"
+    orchestrator_version = var.kubernetes_version
+    vm_size              = var.kubernetes_vm_size
     availability_zones   = ["1", "2"]
     enable_auto_scaling  = true
     min_count            = 1
@@ -45,11 +49,11 @@ resource "azurerm_kubernetes_cluster" "man_aks" {
   }
 }
 
-resource "azurerm_kubernetes_cluster_node_pool" "mancom_pool" {
-  name                  = "${var.prefix}pool"
+resource "azurerm_kubernetes_cluster_node_pool" "manv2_pool" {
+  name                  = "${var.prefix}pool${var.env_prefix}"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.man_aks.id
-  orchestrator_version  = "1.18.10"
-  vm_size               = "Standard_E2s_v3"
+  orchestrator_version  = var.kubernetes_version
+  vm_size               = var.kubernetes_vm_size
 
   # place cluster nodes in two separate AZ's to guarantee 99.95% SLA
   availability_zones  = ["1", "2"]

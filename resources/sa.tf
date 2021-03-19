@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "manbldoc" {
-  name                     = "manbldocumentsstoraget"
+  name                     = "manbldocumentsstorage${var.env_prefix}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.location
   account_tier             = "Standard"
@@ -23,7 +23,7 @@ resource "azurerm_storage_container" "manbldoc_events" {
 }
 
 resource "azurerm_storage_account" "mancmsdoc" {
-  name                     = "mancmsstoragetest"
+  name                     = "mancmsstorage${var.env_prefix}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.location
   account_tier             = "Standard"
@@ -35,13 +35,8 @@ resource "azurerm_storage_container" "mancms_shared_data" {
   storage_account_name = azurerm_storage_account.mancmsdoc.name
 }
 
-resource "azurerm_storage_container" "mancms_shared_css" {
-  name                 = "shared-cms-data-css"
-  storage_account_name = azurerm_storage_account.mancmsdoc.name
-}
-
-resource "azurerm_storage_container" "mancms_shared_js" {
-  name                 = "shared-cms-data-js"
+resource "azurerm_storage_container" "cms-files" {
+  name                 = "cms-files"
   storage_account_name = azurerm_storage_account.mancmsdoc.name
 }
 
