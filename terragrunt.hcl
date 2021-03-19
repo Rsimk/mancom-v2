@@ -6,8 +6,8 @@ remote_state {
   }
   config = {
     key = "${path_relative_to_include()}/terraform.tfstate"
-    resource_group_name = "tfstate-rg"
-    storage_account_name = "tf1129927218st1"
+    resource_group_name = "tfstate"
+    storage_account_name = "mantfstatestorage"
     container_name = "tfstate"
   }
 }
