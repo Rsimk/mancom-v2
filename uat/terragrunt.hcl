@@ -6,6 +6,7 @@ include {
   path = find_in_parent_folders()
 }
 
+#Resource naming convention comes with env_prefix name.
   inputs = {
   prefix = "manv2"
   env_prefix = "uat"
