@@ -30,11 +30,3 @@ variable "kubernetes_version" {
 variable "kubernetes_vm_size" {
   description  = "Kubernetes pool vm size"
 }
-
-variable "sftpUser" {
-  description  = "sftp User"
-}
-
-variable "sftpPassword" {
-  description  = "sftp Password"
-}
