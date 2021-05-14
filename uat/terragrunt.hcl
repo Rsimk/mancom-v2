@@ -14,6 +14,6 @@ include {
   acradminuser = "manPocRegistryUat"
   public_ssh_key_path = "~/.ssh/id_rsa_aks.pub"
   resource_group_name = "man-v2"
-  kubernetes_version = "1.18.14"
+  kubernetes_version = "1.19.9"
   kubernetes_vm_size = "Standard_E2s_v4"
 }
