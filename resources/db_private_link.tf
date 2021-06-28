@@ -1,12 +1,12 @@
 resource "azurerm_private_endpoint" "db_private" {
-  name                = "db-private-endpoint"
+  name                = "man-kubernetes-to-db-${var.env_prefix}"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   subnet_id           = azurerm_subnet.default.id
 
   private_service_connection {
-    name                           = "man-bl-connection-uat"
-    private_connection_resource_id = "/subscriptions/c47c194f-0987-40d0-b8fe-0a2086a01dc8/resourceGroups/man-poc/providers/Microsoft.DBforMariaDB/servers/man-poc-db"
+    name                           = "man-kubernetes-to-db-${var.env_prefix}"
+    private_connection_resource_id = "/subscriptions/c47c194f-0987-40d0-b8fe-0a2086a01dc8/resourceGroups/man-v2-dev/providers/Microsoft.DBforMariaDB/servers/manv2-db-dev"
 	is_manual_connection = false
     subresource_names = ["mariadbServer"]
   }
