@@ -60,3 +60,48 @@ resource "azurerm_key_vault_access_policy" "julius-paradnikas" {
   ]
 }
 
+resource "azurerm_key_vault" "man-xbus" {
+  name                       = "man-xbus-${var.env_prefix}"
+  resource_group_name        = azurerm_resource_group.rg.name
+  location                   = var.location
+  tenant_id                  = data.azurerm_client_config.current.tenant_id
+  soft_delete_retention_days = 90
+
+  sku_name = "standard"
+}
+
+resource "azurerm_key_vault_access_policy" "man-xbus" {
+  key_vault_id = azurerm_key_vault.man-xbus.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = "e0ff0447-b63b-48aa-b327-3c19ccd58f4b" //For now its xbus-cli id, that has been created in old demo env. We will remove this after keu vault policy change
+
+  key_permissions = [
+    "Get",
+	"List"
+  ]
+
+  secret_permissions = [
+    "Get",
+	"List"
+  ]
+}
+
+resource "azurerm_key_vault_access_policy" "aurimas-bachanovicius" {
+  key_vault_id = azurerm_key_vault.man-xbus.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = "ab8f48d1-e884-4f10-83c4-00f971203c05"
+
+  key_permissions = [
+    "Get",
+	"List",
+	"Import",
+	"Delete",
+  ]
+
+  secret_permissions = [
+    "Get",
+	"List",
+	"Set",
+	"Delete",
+  ]
+}
