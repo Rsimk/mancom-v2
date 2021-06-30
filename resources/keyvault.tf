@@ -73,7 +73,7 @@ resource "azurerm_key_vault" "man-xbus" {
 resource "azurerm_key_vault_access_policy" "man-xbus" {
   key_vault_id = azurerm_key_vault.man-xbus.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = "e0ff0447-b63b-48aa-b327-3c19ccd58f4b" //For now its xbus-cli id, that has been created in old demo env. We will remove this after keu vault policy change
+  object_id    = "e0ff0447-b63b-48aa-b327-3c19ccd58f4b" //temp sp account for access
 
   key_permissions = [
     "Get",
