@@ -19,12 +19,10 @@ resource "azuread_service_principal" "sp-man-bl" {
 
 resource "azuread_service_principal_password" "sp-man-bl" {
   service_principal_id = azuread_service_principal.sp-man-bl.id
-  value                = random_string.sp-man-bl-password.result
   end_date_relative    = "8760h"
 }
 
 resource "azuread_application_password" "sp-man-bl" {
   application_object_id = azuread_application.sp-man-bl.id
-  value                 = random_string.sp-man-bl-secret.result
   end_date_relative     = "8760h"
 }
