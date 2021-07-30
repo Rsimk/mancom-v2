@@ -21,7 +21,7 @@ resource "azurerm_eventgrid_system_topic" "man_doc_upload" {
   }
 
   webhook_endpoint {
-    url                               = "https://manv2-documents-stage.metasite.lt/webhooks/documents/sync" //?accessToken=formKeyvault
+    url                               = var.document_upload_webhook_url
     max_events_per_batch              = 10
     preferred_batch_size_in_kilobytes = 1024
   }
@@ -30,11 +30,11 @@ resource "azurerm_eventgrid_system_topic" "man_doc_upload" {
     string_begins_with {
       key = "Subject"
       values = [
-        "/blobServices/default/containers/documents/blobs/uat/uploads/documents/morningstar",
-        "/blobServices/default/containers/documents/blobs/uat/uploads/documents/restricted_consumption",
-        "/blobServices/default/containers/documents/blobs/uat/uploads/documents/require_approval",
-        "/blobServices/default/containers/documents/blobs/uat/uploads/documents/bulk_upload",
-        "/blobServices/default/containers/documents/blobs/uat/uploads/documents/xbus",
+        "/blobServices/default/containers/documents/blobs/${var.env_prefix}/uploads/documents/morningstar",
+        "/blobServices/default/containers/documents/blobs/${var.env_prefix}/uploads/documents/restricted_consumption",
+        "/blobServices/default/containers/documents/blobs/${var.env_prefix}/uploads/documents/require_approval",
+        "/blobServices/default/containers/documents/blobs/${var.env_prefix}/uploads/documents/bulk_upload",
+        "/blobServices/default/containers/documents/blobs/${var.env_prefix}/uploads/documents/xbus",
       ]
     }
 

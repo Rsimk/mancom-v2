@@ -1,15 +1,5 @@
-resource "random_string" "sp-man-bl-password" {
-  length  = 24
-  special = true
-}
-
-resource "random_string" "sp-man-bl-secret" {
-  length  = 24
-  special = true
-}
-
 resource "azuread_application" "sp-man-bl" {
-  display_name = "man-bl-${var.env_prefix}"
+  display_name = "${var.prefix }-bl-${var.env_prefix}"
 }
 
 resource "azuread_service_principal" "sp-man-bl" {

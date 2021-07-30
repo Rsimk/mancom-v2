@@ -33,7 +33,7 @@ resource "azurerm_kubernetes_cluster" "man_aks" {
 
   service_principal {
     client_id     = azuread_service_principal.sp-aks.application_id
-    client_secret = random_string.sp-aks-password.result
+    client_secret = azuread_service_principal_password.sp-aks.value
   }
 
   network_profile {

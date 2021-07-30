@@ -30,3 +30,7 @@ variable "kubernetes_version" {
 variable "kubernetes_vm_size" {
   description  = "Kubernetes pool vm size"
 }
+
+variable "document_upload_webhook_url" {
+  description = "Document upload event subscription webook url " 
+}

@@ -3,7 +3,7 @@ resource "azurerm_log_analytics_workspace" "mancom" {
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "PerGB2018"
-  retention_in_days   = 90
+  retention_in_days   = 30
 }
 
 resource "azurerm_log_analytics_solution" "man_k8s_containerinsights" {
