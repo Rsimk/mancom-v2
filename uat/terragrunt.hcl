@@ -14,7 +14,7 @@ include {
   acradminuser = "manPocRegistryUat"
   public_ssh_key_path = "~/.ssh/id_rsa_aks.pub"
   resource_group_name = "man-v2"
-  kubernetes_version = "1.19.9"
+  kubernetes_version = "1.20.7"
   kubernetes_vm_size = "Standard_E2s_v4"
-  document_upload_webhook_url = "https://manv2-documents-stage.metasite.lt/webhooks/documents/sync" //?accessToken=
+  document_upload_webhook_url = "https://manv2-documents-stage.metasite.lt/webhooks/documents/sync?" //?accessToken=key
 }
