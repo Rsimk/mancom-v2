@@ -94,6 +94,30 @@ resource "azurerm_mariadb_firewall_rule" "clientipaddress-2020-6-4_0-37-2" {
   end_ip_address      = "188.69.213.75"
 }
 
+resource "azurerm_mariadb_firewall_rule" "db-backup-vm" {
+  name                = "db-backup-vm"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "20.93.136.16"
+  end_ip_address      = "20.93.136.16"
+}
+
+resource "azurerm_mariadb_firewall_rule" "github" {
+  name                = "github"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "20.73.142.224"
+  end_ip_address      = "20.73.142.224"
+}
+
+resource "azurerm_mariadb_firewall_rule" "ja" {
+  name                = "ja"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "88.216.150.86"
+  end_ip_address      = "88.216.150.86"
+}
+
 resource "azurerm_mariadb_firewall_rule" "julija-sodas-whitelist" {
   name                = "julija-sodas-whitelist"
   resource_group_name = azurerm_resource_group.rg.name
@@ -116,6 +140,14 @@ resource "azurerm_mariadb_firewall_rule" "justas-v2" {
   server_name         = azurerm_mariadb_server.man_mariadb.name
   start_ip_address    = "86.38.36.212"
   end_ip_address      = "86.38.36.212"
+}
+
+resource "azurerm_mariadb_firewall_rule" "justas-v3" {
+  name                = "justas-v3"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "89.116.98.214"
+  end_ip_address      = "89.116.98.214"
 }
 
 resource "azurerm_mariadb_firewall_rule" "karolis" {
@@ -150,12 +182,52 @@ resource "azurerm_mariadb_firewall_rule" "lina-ofisas" {
   end_ip_address      = "213.252.195.5"
 }
 
+resource "azurerm_mariadb_firewall_rule" "man_client1" {
+  name                = "man_client1"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "52.5.142.59"
+  end_ip_address      = "52.5.142.59"
+}
+
+resource "azurerm_mariadb_firewall_rule" "man_client2" {
+  name                = "man_client2"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "34.226.132.221"
+  end_ip_address      = "34.226.132.221"
+}
+
+resource "azurerm_mariadb_firewall_rule" "man_client3" {
+  name                = "man_client3"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "52.54.43.157"
+  end_ip_address      = "52.54.43.157"
+}
+
+resource "azurerm_mariadb_firewall_rule" "new_office" {
+  name                = "new_office"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "88.119.94.17"
+  end_ip_address      = "88.119.94.17"
+}
+
 resource "azurerm_mariadb_firewall_rule" "ofice" {
   name                = "ofice"
   resource_group_name = azurerm_resource_group.rg.name
   server_name         = azurerm_mariadb_server.man_mariadb.name
   start_ip_address    = "213.252.195.5"
   end_ip_address      = "213.252.195.5"
+}
+
+resource "azurerm_mariadb_firewall_rule" "office" {
+  name                = "office"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "88.119.159.5"
+  end_ip_address      = "88.119.159.5"
 }
 
 resource "azurerm_mariadb_firewall_rule" "sandra" {
@@ -176,6 +248,22 @@ resource "azurerm_mariadb_firewall_rule" "sandra2" {
 
 resource "azurerm_mariadb_firewall_rule" "sandra3" {
   name                = "sandra3"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "78.56.247.80"
+  end_ip_address      = "78.56.247.80"
+}
+
+resource "azurerm_mariadb_firewall_rule" "sandra4" {
+  name                = "sandra4"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "213.159.40.242"
+  end_ip_address      = "213.159.40.242"
+}
+
+resource "azurerm_mariadb_firewall_rule" "sandra5" {
+  name                = "sandra5"
   resource_group_name = azurerm_resource_group.rg.name
   server_name         = azurerm_mariadb_server.man_mariadb.name
   start_ip_address    = "78.56.247.80"
@@ -422,3 +510,58 @@ resource "azurerm_mariadb_firewall_rule" "wx8" {
   end_ip_address      = "66.159.200.115"
 }
 
+resource "azurerm_mariadb_firewall_rule" "old_demo_kubernetes" {
+  name                = "old_demo_kubernetes"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "20.50.23.90"
+  end_ip_address      = "20.50.23.90"
+}
+
+resource "azurerm_mariadb_firewall_rule" "new_kube_dev" {
+  name                = "new_kube_dev"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "20.103.32.19"
+  end_ip_address      = "20.103.32.19"
+}
+
+resource "azurerm_mariadb_firewall_rule" "Karolis_new" {
+  name                = "Karolis_new"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "90.138.58.80"
+  end_ip_address      = "90.138.58.80"
+}
+
+resource "azurerm_mariadb_firewall_rule" "Aurimas_new" {
+  name                = "Aurimas_new"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "78.57.64.120"
+  end_ip_address      = "78.57.64.120"
+}
+
+resource "azurerm_mariadb_firewall_rule" "Jurgita_new" {
+  name                = "Jurgita_new"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "78.60.220.183"
+  end_ip_address      = "78.60.220.183"
+}
+
+resource "azurerm_mariadb_firewall_rule" "Aurimas_Pok" {
+  name                = "Aurimas_Pok"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "78.56.34.74"
+  end_ip_address      = "78.56.34.74"
+}
+
+resource "azurerm_mariadb_firewall_rule" "sergey" {
+  name                = "sergey"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mariadb_server.man_mariadb.name
+  start_ip_address    = "178.54.8.164"
+  end_ip_address      = "178.54.8.164"
+}

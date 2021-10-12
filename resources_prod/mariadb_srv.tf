@@ -1,5 +1,5 @@
 resource "azurerm_mariadb_server" "man_mariadb" {
-  name                = var.mariadb_srv_name
+  name                = "${var.prefix}-db-${var.env_prefix}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
 
