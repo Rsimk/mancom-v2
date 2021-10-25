@@ -1,5 +1,6 @@
 resource "azurerm_storage_account" "manbldoc" {
-  name                     = "manbldocumentsstorage${var.env_prefix}"
+  /*   name                     = "manbldocumentsstorage${var.env_prefix}" */
+  name                     = "manbldocumentsst${var.env_prefix}"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.location
   account_tier             = "Standard"

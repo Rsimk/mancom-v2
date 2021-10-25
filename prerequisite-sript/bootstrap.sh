@@ -8,8 +8,8 @@ SP_NAME='http://tf-deploy'
 SP_PIPELINE_NAME='http://tf-pipeline'
 TF_RG_NAME='tfstate'
 TF_STATE_KEY_NAME='backend.tfstate'
-TF_STORAGE_ACCT_NAME='mantfstatestorage'
-TF_KEYVAULT_NAME='man-tf-kv'
+TF_STORAGE_ACCT_NAME=$RANDOM"mantfstatest1"
+TF_KEYVAULT_NAME="man-"$RANDOM"-tf-kv"
 TF_STORAGE_ACCT_SKU='Standard_GRS'
 TF_STORAGE_CONTAINER_NAME="tfstate"
 
@@ -41,16 +41,16 @@ sed -i "s/mybackendkey.tfstate/$TF_STATE_KEY_NAME/" backend.hcl
 
 ADMIN_USER=$(az ad signed-in-user show --output json)
 
-# Configure az cli for silent output and defaults
-export AZURE_CORE_OUTPUT=none
+# Configure defaults
 az configure --defaults group=$TF_RG_NAME location=$LOCATION \
              --scope local
 
-# skip if exists 
+# skip if resource group exists 
 if [[ $(az group exists --name $TF_RG_NAME) == false ]]; then
     echo "Creating resource group $TF_RG_NAME"
     az group create --name $TF_RG_NAME --location $LOCATION
 fi
+
 
 echo "Creating service principal and assigning 'Owner' role on subscription level"
 SP=$(az ad sp create-for-rbac -n $SP_NAME \
@@ -58,21 +58,32 @@ SP=$(az ad sp create-for-rbac -n $SP_NAME \
                                --scopes "/subscriptions/$SUBSCRIPTION_ID" \
                                --output json)
 
-echo "Creating service principal and assigning Reader role at resource group: $TF_RG_NAME"
+echo "Creating service principal and assigning 'Reader' role at resource group: $TF_RG_NAME"
 SP_PIPELINE=$(az ad sp create-for-rbac -n $SP_PIPELINE_NAME \
                                --role "Reader" \
                                --scopes "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$TF_RG_NAME" \
                                --sdk-auth \
                                --output json)
 
+SP_APPID=$(echo $SP | jq -r .appId)
+SP_PIPELINE_APPID=$(echo $SP_PIPELINE | jq -r .clientId)
+
+echo "#################################"
+echo $SP
+echo $SP_PIPELINE
+echo "#################################"
+
 echo "Waiting for the new service principals to appear in the Azure AD Graph"
 while [ ! "$SP_OBJECT" ] || [ ! "$SP_PIPELINE_OBJECT" ]; do
   printf '.'
-  SP_OBJECT=$(az ad sp show --id "$SP_NAME" --output json)
-  SP_PIPELINE_OBJECT=$(az ad sp show --id "$SP_PIPELINE_NAME" --output json)
+  SP_OBJECT=$(az ad sp show --id "$SP_APPID" --output json)
+  SP_PIPELINE_OBJECT=$(az ad sp show --id "$SP_PIPELINE_APPID" --output json)
   sleep 5
 done
 printf '\n'
+
+# silence az cli output
+export AZURE_CORE_OUTPUT=none
 
 echo "Creating storage account $TF_STORAGE_ACCT_NAME"
 az storage account create --name $TF_STORAGE_ACCT_NAME \
@@ -99,6 +110,9 @@ TOBEREMOVED=$(az role assignment create --role 'Storage Blob Data Contributor' \
                           --assignee-principal-type User \
                           --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$TF_RG_NAME/providers/Microsoft.Storage/storageAccounts/$TF_STORAGE_ACCT_NAME" \
                           --output json)
+
+# silence az cli output
+export AZURE_CORE_OUTPUT=none
 
 echo "Creating blob container for Terraform backend"
 az storage container create --account-name $TF_STORAGE_ACCT_NAME \

@@ -8,7 +8,7 @@ resource "azurerm_linux_virtual_machine" "ftp_gateway" {
     azurerm_network_interface.ftp_gateway_nic.id,
   ]
 
-  depends_on = [ azurerm_network_interface_security_group_association.ftp_nic_nsg ]
+  depends_on = [azurerm_network_interface_security_group_association.ftp_nic_nsg]
 
   # ssh key have to generated before applying this terraform configuration
   admin_ssh_key {
@@ -31,8 +31,8 @@ resource "azurerm_linux_virtual_machine" "ftp_gateway" {
 
   plan {
     publisher = "thorntechnologiesllc"
-    name = "sftpgateway"
-    product = "sftpgateway"
+    name      = "sftpgateway"
+    product   = "sftpgateway"
   }
 
   boot_diagnostics {
@@ -48,7 +48,7 @@ resource "azurerm_network_interface" "ftp_gateway_nic" {
     name                          = "ipconfig1"
     subnet_id                     = azurerm_subnet.default.id
     private_ip_address_allocation = "Dynamic"
-	public_ip_address_id = azurerm_public_ip.man_ftp_srv_ip.id
+    public_ip_address_id          = azurerm_public_ip.man_ftp_srv_ip.id
   }
 }
 
@@ -68,7 +68,7 @@ resource "azurerm_public_ip" "man_ftp_srv_ip" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
   allocation_method   = "Static"
-  domain_name_label   =  "${var.prefix}-sftp"
+  domain_name_label   = "${var.prefix}-sftp"
 
   tags = {
     environment = var.env_prefix
@@ -79,5 +79,5 @@ resource "azurerm_ssh_public_key" "ftp_gateway_vm_key" {
   name                = "${var.prefix}-ftp-gateway-vm-key-${var.env_prefix}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
-  public_key          = file("~/.ssh/1625164765_1437535.pub")
+  public_key          = file("~/.ssh/id_rsa.pub")
 }

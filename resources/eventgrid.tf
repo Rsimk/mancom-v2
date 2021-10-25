@@ -1,4 +1,4 @@
-resource "azurerm_eventgrid_system_topic" "man_doc_upload" {
+/* resource "azurerm_eventgrid_system_topic" "man_doc_upload" {
   name                   = "man-documents-upload-topic-${var.env_prefix}"
   resource_group_name    = azurerm_resource_group.rg.name
   location               = var.location
@@ -6,11 +6,11 @@ resource "azurerm_eventgrid_system_topic" "man_doc_upload" {
   topic_type             = "Microsoft.Storage.StorageAccounts"
 }
 
- resource "azurerm_eventgrid_system_topic_event_subscription" "document-upload" {
-  name  = "document-upload-${var.env_prefix}"
-  system_topic = azurerm_eventgrid_system_topic.man_doc_upload.name
-  resource_group_name    = azurerm_resource_group.rg.name
-  
+resource "azurerm_eventgrid_system_topic_event_subscription" "document-upload" {
+  name                = "document-upload-${var.env_prefix}"
+  system_topic        = azurerm_eventgrid_system_topic.man_doc_upload.name
+  resource_group_name = azurerm_resource_group.rg.name
+
   included_event_types = [
     "Microsoft.Storage.BlobCreated",
   ]
@@ -64,3 +64,4 @@ resource "azurerm_eventgrid_system_topic" "man_doc_upload" {
   }
 }
 
+ */

@@ -6,11 +6,11 @@ resource "azurerm_virtual_network" "man_vnet" {
 }
 
 resource "azurerm_subnet" "default" {
-  name                 = "${var.prefix}-subnet"
-  resource_group_name  = azurerm_resource_group.rg.name
-  address_prefixes     = ["172.16.0.0/24"]
-  virtual_network_name = azurerm_virtual_network.man_vnet.name
-  enforce_private_link_service_network_policies = false
+  name                                           = "${var.prefix}-subnet"
+  resource_group_name                            = azurerm_resource_group.rg.name
+  address_prefixes                               = ["172.16.0.0/24"]
+  virtual_network_name                           = azurerm_virtual_network.man_vnet.name
+  enforce_private_link_service_network_policies  = false
   enforce_private_link_endpoint_network_policies = true
 }
 

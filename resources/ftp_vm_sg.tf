@@ -10,12 +10,12 @@ resource "azurerm_network_security_group" "man_ftp_srv" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_ranges     = ["22", "80", "443"]
+    destination_port_ranges    = ["22", "80", "443"]
     source_address_prefix      = "78.61.196.174/32"
     destination_address_prefix = "*"
   }
 
-   security_rule {
+  security_rule {
     name                       = "Liutauras"
     priority                   = 101
     direction                  = "Inbound"
@@ -98,7 +98,7 @@ resource "azurerm_network_security_group" "man_ftp_srv" {
     source_address_prefix      = "88.119.94.17/32"
     destination_address_prefix = "*"
   }
-  
+
   security_rule {
     name                       = "Uat Kubernetes 1"
     priority                   = 108
@@ -110,7 +110,7 @@ resource "azurerm_network_security_group" "man_ftp_srv" {
     source_address_prefix      = "20.73.142.224/32"
     destination_address_prefix = "*"
   }
-  
+
   security_rule {
     name                       = "Uat Kubernetes 2"
     priority                   = 109
@@ -122,7 +122,7 @@ resource "azurerm_network_security_group" "man_ftp_srv" {
     source_address_prefix      = "51.138.45.208/32"
     destination_address_prefix = "*"
   }
-  
+
   security_rule {
     name                       = "Aurimas Home"
     priority                   = 110
@@ -137,7 +137,7 @@ resource "azurerm_network_security_group" "man_ftp_srv" {
 
   security_rule {
     name                       = "Aurimas_Pok"
-    priority                   =  112
+    priority                   = 112
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"

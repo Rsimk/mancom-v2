@@ -15,12 +15,12 @@ resource "azurerm_key_vault_access_policy" "man-bl" {
 
   key_permissions = [
     "Get",
-	"List"
+    "List"
   ]
 
   secret_permissions = [
     "Get",
-	"List"
+    "List"
   ]
 }
 
@@ -31,14 +31,14 @@ resource "azurerm_key_vault_access_policy" "petras-dicpinigaitis" {
 
   key_permissions = [
     "Get",
-	"List"
+    "List"
   ]
 
   secret_permissions = [
     "Get",
-	"List",
-	"Set",
-	"Delete",
+    "List",
+    "Set",
+    "Delete",
   ]
 }
 
@@ -49,14 +49,14 @@ resource "azurerm_key_vault_access_policy" "julius-paradnikas" {
 
   key_permissions = [
     "Get",
-	"List"
+    "List"
   ]
 
   secret_permissions = [
     "Get",
-	"List",
-	"Set",
-	"Delete",
+    "List",
+    "Set",
+    "Delete",
   ]
 }
 
@@ -77,12 +77,12 @@ resource "azurerm_key_vault_access_policy" "man-xbus" {
 
   key_permissions = [
     "Get",
-	"List"
+    "List"
   ]
 
   secret_permissions = [
     "Get",
-	"List"
+    "List"
   ]
 }
 
@@ -93,15 +93,15 @@ resource "azurerm_key_vault_access_policy" "aurimas-bachanovicius" {
 
   key_permissions = [
     "Get",
-	"List",
-	"Import",
-	"Delete",
+    "List",
+    "Import",
+    "Delete",
   ]
 
   secret_permissions = [
     "Get",
-	"List",
-	"Set",
-	"Delete",
+    "List",
+    "Set",
+    "Delete",
   ]
 }

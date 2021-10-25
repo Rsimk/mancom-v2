@@ -4,7 +4,7 @@ resource "azurerm_kubernetes_cluster" "man_aks" {
   dns_prefix          = var.prefix
   resource_group_name = azurerm_resource_group.rg.name
   kubernetes_version  = var.kubernetes_version
-  
+
   tags = {
     environment = var.env_prefix
   }
@@ -25,7 +25,7 @@ resource "azurerm_kubernetes_cluster" "man_aks" {
     enable_auto_scaling  = true
     min_count            = 1
     max_count            = 2
-    os_disk_size_gb = 128
+    os_disk_size_gb      = 128
 
     # Required for advanced networking
     vnet_subnet_id = azurerm_subnet.cluster.id

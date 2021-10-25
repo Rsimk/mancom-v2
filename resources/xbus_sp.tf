@@ -9,7 +9,6 @@ resource "azuread_service_principal" "sp-xbus-cli" {
 
 resource "azuread_service_principal_password" "sp-xbus-cli" {
   service_principal_id = azuread_service_principal.sp-man-bl.id
-  end_date_relative    = "8760h"
 }
 
 resource "azuread_application_password" "sp-xbus-cli" {
